@@ -24,7 +24,7 @@
     "syntax",
     "tree-sitter"
   ],
-  "icon": "icon.png",
+  "icon": "icon.jpg",
   "activationEvents": ["onLanguage:rsl"],
   "main": "./out/extension.js",
   "contributes": {
