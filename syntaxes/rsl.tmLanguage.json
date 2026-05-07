@@ -1,0 +1,123 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "RSL",
+    "patterns": [
+        { "include": "#comments" },
+        { "include": "#strings" },
+        { "include": "#keywords" },
+        { "include": "#types" },
+        { "include": "#builtins" },
+        { "include": "#constants" },
+        { "include": "#operators" },
+        { "include": "#functions" }
+    ],
+    "repository": {
+        "comments": {
+            "patterns": [
+                {
+                    "name": "comment.line.double-slash.rsl",
+                    "match": "//.*$"
+                },
+                {
+                    "name": "comment.block.rsl",
+                    "begin": "/\\*",
+                    "end": "\\*/"
+                }
+            ]
+        },
+        "strings": {
+            "patterns": [
+                {
+                    "name": "string.quoted.double.sql.rsl",
+                    "begin": "\"(?i)(?=[^\"]*\\b(SELECT|INSERT|UPDATE|DELETE|WITH|FROM|WHERE|JOIN|CROSS JOIN|AND|OR|AS|ON|TO_NUMBER|TO_CHAR|DUAL)\\b)",
+                    "end": "\"",
+                    "patterns": [
+                        { "name": "constant.character.escape.rsl", "match": "\\\\." },
+                        { "include": "source.sql" }
+                    ]
+                },
+                {
+                    "name": "string.quoted.double.rsl",
+                    "begin": "\"",
+                    "end": "\"",
+                    "patterns": [
+                        { "name": "constant.character.escape.rsl", "match": "\\\\." }
+                    ]
+                }
+            ]
+        },
+        "keywords": {
+            "patterns": [
+                {
+                    "name": "keyword.control.rsl",
+                    "match": "(?i)\\b(if|elif|else|while|for|return|end|onerror)\\b"
+                },
+                {
+                    "name": "storage.type.rsl",
+                    "match": "(?i)\\b(macro|class|var|const|record|array|file)\\b"
+                },
+                {
+                    "name": "keyword.other.rsl",
+                    "match": "(?i)\\b(import|with|local|private)\\b"
+                }
+            ]
+        },
+        "types": {
+            "patterns": [
+                {
+                    "name": "support.type.rsl",
+                    "match": "(?i)\\b(variant|integer|money|double|doublel|string|bool|date|time|procref|datetime|r2m|memaddr|tbfile|trechandler|tarray|tstreamdoc|object)\\b"
+                }
+            ]
+        },
+        "builtins": {
+            "patterns": [
+                {
+                    "name": "support.variable.rsl",
+                    "match": "(?i)\\b(this|optval|nullval|null)\\b"
+                },
+                {
+                    "name": "support.constant.rsl",
+                    "match": "(?i)\\b(v_integer|v_double|v_doublel|v_string|v_bool|v_date|v_time|v_dttm|v_memaddr|v_proc|v_r2m|v_decimal|v_numeric|v_money|v_moneyl|v_undef)\\b"
+                }
+            ]
+        },
+        "constants": {
+            "patterns": [
+                {
+                    "name": "constant.language.boolean.rsl",
+                    "match": "(?i)\\b(true|false)\\b"
+                },
+                {
+                    "name": "constant.numeric.rsl",
+                    "match": "\\b[0-9]+(\\.[0-9]+)?\\b"
+                },
+                {
+                    "name": "constant.numeric.money.rsl",
+                    "match": "\\$[0-9]+(\\.[0-9]+)?\\b"
+                }
+            ]
+        },
+        "operators": {
+            "patterns": [
+                {
+                    "name": "keyword.operator.rsl",
+                    "match": "==|!=|<=|>=|<|>|=|\\+|-|\\*|/"
+                },
+                {
+                    "name": "keyword.operator.word.rsl",
+                    "match": "(?i)\\b(and|or|not)\\b"
+                }
+            ]
+        },
+        "functions": {
+            "patterns": [
+                {
+                    "name": "entity.name.function.rsl",
+                    "match": "(?i)\\b([a-z_][a-z0-9_]*)\\s*\\("
+                }
+            ]
+        }
+    },
+    "scopeName": "source.rsl"
+}

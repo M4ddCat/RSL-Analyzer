@@ -1,0 +1,73 @@
+{
+  "name": "rsl-analyzer",
+  "displayName": "rsl-analyzer",
+  "description": "Smart syntax highlighting and language tools for RSL",
+  "version": "1.0.0",
+  "publisher": "M4ddCat",
+  "author": {
+    "name": "M4ddCat"
+  },
+  "lcense": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/M4ddCat/RSL-Analyzer"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "rsl",
+    "rsd",
+    "syntax",
+    "tree-sitter"
+  ],
+  "icon": "icon.png",
+  "activationEvents": ["onLanguage:rsl"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configurationDefaults": {
+      "[rsl]": {
+        "editor.semanticHighlighting.enabled": true
+      }
+    },
+    "languages": [
+      {
+        "id": "rsl",
+        "aliases": ["RSL", "rsl"],
+        "extensions": [".mac"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "rsl",
+        "scopeName": "source.rsl",
+        "path": "./syntaxes/rsl.tmLanguage.json"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/vscode": "^1.75.0",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^9.39.3",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.1"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1"
+  }
+}
